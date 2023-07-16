@@ -3,19 +3,19 @@ version: '3.5'
 services:
     postgres:
         container_name: pg12
-        image: "postgres:12"                            # use PG12 as base image
+        image: "postgres:12" # use PG12 as base image
         environment:
             POSTGRES_USER: ${POSTGRES_USER:-postgres}
-            POSTGRES_HOST_AUTH_METHOD: trust            # allow connections to PG without a password (NEVER do this in production!)
+            POSTGRES_HOST_AUTH_METHOD: trust # allow connections to PG without a password (NEVER do this in production!)
             PGDATA: /data/postgres
         volumes:
-            - postgres:/data/postgres                   # make the database persistent
-            - type: bind                                # add a filesystem link
-              source: ../                               # from host ../
-              target: /home/root/files                  # to docker /home/root/files
+            - postgres:/data/postgres # make the database persistent
+            - type: bind # add a filesystem link
+              source: ../ # from host ../
+              target: /home/root/files # to docker /home/root/files
         working_dir: /home/root/files
         ports:
-            - "5432:5432"                               # expose postgres default port
+            - "5432:5432" # expose postgres default port
         restart: unless-stopped
 
     monetdb:
@@ -29,6 +29,12 @@ services:
             - type: bind
               source: ../
               target: /home/monetdb/files
+        restart: unless-stopped
+
+    adminer:
+        image: adminer
+        ports:
+            - 8080:8080
         restart: unless-stopped
 
 volumes:
