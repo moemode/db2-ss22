@@ -2,10 +2,11 @@ version: '3.5'
 
 services:
     postgres:
-        container_name: pg12
+        container_name: db
         image: "postgres:12" # use PG12 as base image
         environment:
             POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: root
             POSTGRES_HOST_AUTH_METHOD: trust # allow connections to PG without a password (NEVER do this in production!)
             PGDATA: /data/postgres
         volumes:
