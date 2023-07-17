@@ -18,35 +18,26 @@ void *mmap_file(char *path, off_t *size) {
     int fd;
     struct stat status;
     void *map;
-
     fd = open(path, O_RDONLY);
     assert(fd >= 0);
     assert(stat(path, &status) == 0);
     *size = status.st_size;
-
     map = mmap(NULL, *size, PROT_READ, MAP_SHARED, fd, 0);
     assert(map != MAP_FAILED);
-
     close(fd);
-
     return map;
 }
 
 int main(int argc, char *argv[]) {
-
     if (argc < 2) {
         printf("Usage: %s <tail_file_path>\n", argv[0]);
         return 1;
     }
-
     off_t tail_size;
     void *tail_map;
     char *tail_path = argv[1];
-
     /* map tail file into memory */
     tail_map = mmap_file(tail_path, &tail_size);
-
     scan_tail(tail_map, tail_size);
-
     return 0;
 }
