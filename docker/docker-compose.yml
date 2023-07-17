@@ -25,10 +25,19 @@ services:
             - "50000"
         ports:
             - "50000:50000"
-        image: "monetdb/monetdb:Nov2019-SP3"
+        image: "monetdb/monetdb"
+        environment:
+            MDB_DAEMON_PASS_FILE: "/run/secrets/db_password_file"
+            MDB_DB_ADMIN_PASS_FILE: "/run/secrets/db_password_file"
+            MDB_CREATE_DBS: "demo"
+            DOTMONETDBFILE: "/run/secrets/dot_monetdb_file"
+        secrets:
+            - db_password_file
+            - dot_monetdb_file
         volumes:
+            - monetdb:/var/monetdb5/dbfarm
             - type: bind
-              source: ../
+              source: ../monetdb
               target: /home/monetdb/files
         restart: unless-stopped
 
@@ -39,4 +48,11 @@ services:
         restart: unless-stopped
 
 volumes:
+    monetdb:
     postgres:
+
+secrets:
+    db_password_file:
+      file: ./db_password_file.txt
+    dot_monetdb_file:
+        file: ./.monetdb
