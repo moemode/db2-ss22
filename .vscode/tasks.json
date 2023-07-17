@@ -10,6 +10,12 @@
             "problemMatcher": []
         },
         {
+            "label": "MonetDB MSQL",
+            "type": "shell",
+            "command": "docker exec -it monetdb mclient -l msql demo",
+            "problemMatcher": []
+        },
+        {
             "label": "MonetDB MAL",
             "type": "shell",
             "command": "docker exec -it monetdb mclient -l mal demo",
