@@ -7,9 +7,9 @@
 #include <stdint.h>
 
 /* path to BAT's tail file */
-#define TAIL "/Users/grust/DB2/course/MonetDB/data/scratch/bat/06/605.tail"
+#define TAIL "./12/1213.tail1"
 /* path to BAT's str heap file */
-#define HEAP "/Users/grust/DB2/course/MonetDB/data/scratch/bat/06/605.theap"
+#define HEAP "./12/1213.theap"
 /* offset of string dictionary in heap file (see hexdump -C ‹HEAP›) */
 #define OFFSET 0x2000
 
