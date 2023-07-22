@@ -63,6 +63,8 @@ INSERT INTO packed(a,b,c,d,e,f)
 VACUUM padded;
 VACUUM packed;
 
+CREATE EXTENSION IF NOT EXISTS pg_freespacemap;
+
 SELECT COUNT(*)
 FROM   pg_freespace('padded');
 
@@ -71,6 +73,7 @@ FROM   pg_freespace('packed');
 
 -- Check how many rows are found on each page of tables
 -- padded and packed:
+CREATE EXTENSION IF NOT EXISTS pageinspect;
 SELECT lp, lp_off, lp_len, t_hoff, t_ctid
 FROM   heap_page_items(get_raw_page('padded',0));
 
