@@ -37,7 +37,7 @@ services:
         volumes:
             - monetdb:/var/monetdb5/dbfarm
             - type: bind
-              source: ../monetdbfiles
+              source: ../
               target: /home/monetdb/files
         restart: unless-stopped
     # adminer:
