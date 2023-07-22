@@ -20,6 +20,12 @@
             "type": "shell",
             "command": "docker exec -it monetdb mclient -l mal demo",
             "problemMatcher": []
+        },
+        {
+            "label": "PSQL",
+            "type": "shell",
+            "command": "docker exec -it db psql -U postgres",
+            "problemMatcher": []
         }
     ]
 }
