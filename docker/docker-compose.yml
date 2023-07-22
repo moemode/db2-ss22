@@ -37,22 +37,22 @@ services:
         volumes:
             - monetdb:/var/monetdb5/dbfarm
             - type: bind
-              source: ../monetdb
+              source: ../monetdbfiles
               target: /home/monetdb/files
         restart: unless-stopped
-
-    adminer:
-        image: adminer
-        ports:
-            - 8080:8080
-        restart: unless-stopped
+    # adminer:
+    #     image: adminer
+    #     ports:
+    #         - 8080:8080
+    #     restart: unless-stopped
 
 volumes:
     monetdb:
     postgres:
 
+
 secrets:
     db_password_file:
-      file: ./db_password_file.txt
+        file: ./db_password_file.txt
     dot_monetdb_file:
         file: ./.monetdb
